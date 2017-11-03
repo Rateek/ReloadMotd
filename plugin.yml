@@ -1,0 +1,5 @@
+name: ReloadMotd
+main: rateek\reloadmotd\Main
+version: 1.0
+api: [3.0.0-ALPHA7, 3.0.0-ALPHA8, 3.0.0-ALPHA9]
+author: Rateek

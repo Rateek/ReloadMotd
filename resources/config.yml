@@ -1,0 +1,19 @@
+---
+# ------------------
+# Config ReloadMotd
+# Author: @Rateek_
+# ------------------
+
+# Send a message when we join the server
+# To remove it put: false
+reloadmotd.message.join: true
+
+# Here is the prefix of the server (Example: "ValeaNetwork")
+reloadmotd.task.prefix: Server
+
+# Here is the messages that update in the motd
+# (Example "Join my server") and a few seconds after its change ...
+reloadmotd.task.text.1: Welcome
+reloadmotd.task.text.2: New server
+reloadmotd.task.text.3: Join now
+...
