@@ -9,15 +9,15 @@ use rateek\reloadmotd\Main;
 class ReloadMotdTask extends Task{
 
     private $main;
-    public $motd = 4;
+    private $motd = 4;
 
     /**
      * ReloadMotdTask constructor.
      * @param Main $main
      */
     public function __construct(Main $main){
-        parent::__construct($main);
         $this->main = $main;
+        
     }
 
     /**
