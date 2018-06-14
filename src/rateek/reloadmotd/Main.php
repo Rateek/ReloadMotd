@@ -7,7 +7,8 @@ use pocketmine\plugin\PluginBase;
 use rateek\reloadmotd\events\ReloadMotdListener;
 use rateek\reloadmotd\tasks\ReloadMotdTask;
 
-class Main extends PluginBase implements Listener {
+
+class Main extends PluginBase implements Listener{
 
     /**
      * Enable ReloadMotd
@@ -21,7 +22,7 @@ class Main extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents(new ReloadMotdListener($this), $this);
 
         # Tasks
-        $this->getServer()->getScheduler()->scheduleRepeatingTask(new ReloadMotdTask($this), 60);
+        $this->getScheduler()->scheduleRepeatingTask(new ReloadMotdTask($this), 60);
 
         # Config
         @mkdir($this->getDataFolder());
@@ -29,4 +30,5 @@ class Main extends PluginBase implements Listener {
         $this->saveDefaultConfig();
         $this->getResource("config.yml");
     }
+    
 }
