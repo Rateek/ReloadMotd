@@ -8,37 +8,42 @@ use rateek\reloadmotd\Main;
 
 class ReloadMotdTask extends Task{
 
-    private $main;
-    private $motd = 4;
+	private $main;
+	private $motd = 4;
 
-    /**
-     * ReloadMotdTask constructor.
-     * @param Main $main
-     */
-    public function __construct(Main $main){
-        $this->main = $main;
-        
-    }
+	/**
+	 * ReloadMotdTask constructor.
+	 * @param Main $main
+	 */
+	public function __construct(Main $main){
+		$this->main = $main;
 
-    /**
-     * @param int $currentTick
-     */
-    public function onRun(int $currentTick){
-        $this->motd--;
+	}
 
-        if($this->motd == 3){
-            $this->main->getServer()->getNetwork()->setName($this->main->getConfig()->get("reloadmotd.task.prefix") . " " . $this->main->getConfig()->get("reloadmotd.task.text.1"));
+	/**
+	 * @param int $currentTick
+	 */
+	public function onRun(int $currentTick){
+		$network = $this->main->getServer()->getNetwork();
+		$config = $this->main->getConfig();
+		$prefix = $config->get("reloadmotd.task.prefix");
 
-        }elseif($this->motd == 2){
-            $this->main->getServer()->getNetwork()->setName($this->main->getConfig()->get("reloadmotd.task.prefix") . " " . $this->main->getConfig()->get("reloadmotd.task.text.2"));
+		$this->motd--;
 
-        }elseif($this->motd == 1){
-            $this->main->getServer()->getNetwork()->setName($this->main->getConfig()->get("reloadmotd.task.prefix") . " " . $this->main->getConfig()->get("reloadmotd.task.text.3"));
+		switch($this->motd){
+			case 1:
+				$network->setName($prefix . " " . $config->get("reloadmotd.task.text.3"));
+				return;
+			case 2:
+				$network->setName($prefix . " " . $config->get("reloadmotd.task.text.2"));
+				return;
+			case 3:
+				$network->setName($prefix . " " . $config->get("reloadmotd.task.text.1"));
+				return;
+			default:
+				$this->motd = 4;
+				return;
+		}
+	}
 
-        }elseif($this->motd == 0){
-            $this->motd = 4;
-            
-        }
-    }
-    
 }
