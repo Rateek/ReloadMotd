@@ -2,7 +2,6 @@
 
 namespace rateek\reloadmotd;
 
-use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use rateek\reloadmotd\events\ReloadMotdListener;
 use rateek\reloadmotd\tasks\ReloadMotdTask;
