@@ -18,7 +18,7 @@ class Main extends PluginBase{
         $this->getLogger()->notice("§eReloadMotd enable.");
 
         # Events
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $this->getServer()->getPluginManager()->registerEvents(new ReloadMotdListener($this), $this);
 
         # Tasks
         $this->getScheduler()->scheduleRepeatingTask(new ReloadMotdTask($this), 60);
