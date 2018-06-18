@@ -8,7 +8,7 @@ use rateek\reloadmotd\events\ReloadMotdListener;
 use rateek\reloadmotd\tasks\ReloadMotdTask;
 
 
-class Main extends PluginBase implements Listener{
+class Main extends PluginBase{
 
     /**
      * Enable ReloadMotd
@@ -19,7 +19,6 @@ class Main extends PluginBase implements Listener{
 
         # Events
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getPluginManager()->registerEvents(new ReloadMotdListener($this), $this);
 
         # Tasks
         $this->getScheduler()->scheduleRepeatingTask(new ReloadMotdTask($this), 60);
@@ -28,7 +27,6 @@ class Main extends PluginBase implements Listener{
         @mkdir($this->getDataFolder());
 
         $this->saveDefaultConfig();
-        $this->getResource("config.yml");
     }
     
 }
