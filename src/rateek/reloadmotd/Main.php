@@ -24,9 +24,13 @@ class Main extends PluginBase{
         $this->getScheduler()->scheduleRepeatingTask(new ReloadMotdTask($this), 60);
 
         # Config
-        @mkdir($this->getDataFolder());
+        if(!is_dir($this->getDataFolder())){
+	        mkdir($this->getDataFolder());
+        }
 
-        $this->saveDefaultConfig();
+        if(!file_exists($this->getDataFolder() . "config.yml")){
+	        $this->saveDefaultConfig();
+        }
     }
     
 }
