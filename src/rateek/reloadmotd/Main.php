@@ -9,27 +9,27 @@ use rateek\reloadmotd\tasks\ReloadMotdTask;
 
 class Main extends PluginBase{
 
-    /**
-     * Enable ReloadMotd
-     */
-    public function onEnable(){
-        # Logger
-        $this->getLogger()->notice("§eReloadMotd enable.");
+	/**
+	 * Enable ReloadMotd
+	 */
+	public function onEnable(){
+		# Logger
+		$this->getLogger()->notice("§eReloadMotd enable.");
 
-        # Events
-        $this->getServer()->getPluginManager()->registerEvents(new ReloadMotdListener($this), $this);
+		# Events
+		$this->getServer()->getPluginManager()->registerEvents(new ReloadMotdListener($this), $this);
 
-        # Tasks
-        $this->getScheduler()->scheduleRepeatingTask(new ReloadMotdTask($this), 60);
+		# Tasks
+		$this->getScheduler()->scheduleRepeatingTask(new ReloadMotdTask($this), 60);
 
-        # Config
-        if(!is_dir($this->getDataFolder())){
-	        mkdir($this->getDataFolder());
-        }
+		# Config
+		if(!is_dir($this->getDataFolder())){
+			mkdir($this->getDataFolder());
+		}
 
-        if(!file_exists($this->getDataFolder() . "config.yml")){
-	        $this->saveDefaultConfig();
-        }
-    }
-    
+		if(!file_exists($this->getDataFolder() . "config.yml")){
+			$this->saveDefaultConfig();
+		}
+	}
+
 }

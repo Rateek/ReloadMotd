@@ -8,21 +8,21 @@ use rateek\reloadmotd\Main;
 
 class ReloadMotdTask extends Task{
 
-    private $main;
-    private $motd = 4;
+	private $main;
+	private $motd = 4;
 
-    /**
-     * ReloadMotdTask constructor.
-     * @param Main $main
-     */
-    public function __construct(Main $main){
-        $this->main = $main;
+	/**
+	 * ReloadMotdTask constructor.
+	 * @param Main $main
+	 */
+	public function __construct(Main $main){
+		$this->main = $main;
 
-    }
+	}
 
-    /**
-     * @param int $currentTick
-     */
+	/**
+	 * @param int $currentTick
+	 */
 	public function onRun(int $currentTick){
 		$network = $this->main->getServer()->getNetwork();
 		$config = $this->main->getConfig();
