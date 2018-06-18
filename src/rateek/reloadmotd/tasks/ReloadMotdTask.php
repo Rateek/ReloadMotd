@@ -17,7 +17,7 @@ class ReloadMotdTask extends Task{
      */
     public function __construct(Main $main){
         $this->main = $main;
-        
+
     }
 
     /**
@@ -30,19 +30,20 @@ class ReloadMotdTask extends Task{
 
 		$this->motd--;
 
-		if($this->motd == 3){
-			$network->setName($prefix . " " . $config->get("reloadmotd.task.text.1"));
-
-		}elseif($this->motd == 2){
-			$network->setName($prefix . " " . $config->get("reloadmotd.task.text.2"));
-
-		}elseif($this->motd == 1){
-			$network->setName($prefix . " " . $config->get("reloadmotd.task.text.3"));
-
-		}elseif($this->motd == 0){
-			$this->motd = 4;
-
+		switch($this->motd){
+			case 1:
+				$network->setName($prefix . " " . $config->get("reloadmotd.task.text.3"));
+				return;
+			case 2:
+				$network->setName($prefix . " " . $config->get("reloadmotd.task.text.2"));
+				return;
+			case 3:
+				$network->setName($prefix . " " . $config->get("reloadmotd.task.text.1"));
+				return;
+			default:
+				$this->motd = 4;
+				return;
 		}
 	}
-    
+
 }
