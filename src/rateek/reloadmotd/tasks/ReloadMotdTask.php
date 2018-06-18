@@ -23,22 +23,26 @@ class ReloadMotdTask extends Task{
     /**
      * @param int $currentTick
      */
-    public function onRun(int $currentTick){
-        $this->motd--;
+	public function onRun(int $currentTick){
+		$network = $this->main->getServer()->getNetwork();
+		$config = $this->main->getConfig();
+		$prefix = $config->get("reloadmotd.task.prefix");
 
-        if($this->motd == 3){
-            $this->main->getServer()->getNetwork()->setName($this->main->getConfig()->get("reloadmotd.task.prefix") . " " . $this->main->getConfig()->get("reloadmotd.task.text.1"));
+		$this->motd--;
 
-        }elseif($this->motd == 2){
-            $this->main->getServer()->getNetwork()->setName($this->main->getConfig()->get("reloadmotd.task.prefix") . " " . $this->main->getConfig()->get("reloadmotd.task.text.2"));
+		if($this->motd == 3){
+			$network->setName($prefix . " " . $config->get("reloadmotd.task.text.1"));
 
-        }elseif($this->motd == 1){
-            $this->main->getServer()->getNetwork()->setName($this->main->getConfig()->get("reloadmotd.task.prefix") . " " . $this->main->getConfig()->get("reloadmotd.task.text.3"));
+		}elseif($this->motd == 2){
+			$network->setName($prefix . " " . $config->get("reloadmotd.task.text.2"));
 
-        }elseif($this->motd == 0){
-            $this->motd = 4;
-            
-        }
-    }
+		}elseif($this->motd == 1){
+			$network->setName($prefix . " " . $config->get("reloadmotd.task.text.3"));
+
+		}elseif($this->motd == 0){
+			$this->motd = 4;
+
+		}
+	}
     
 }
