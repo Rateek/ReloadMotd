@@ -2,8 +2,8 @@
 # Send a message when we join the server to give me visibility.
 message-join: true
 
-# Here is the prefix of the server (Example: "My Server").
-prefix: Server
+# Here is the prefix of the server (Example: "<My Server>").
+prefix: <Server>
 
 # Here is the messages that update in the Motd.
 # (Example "Join my server") and a few seconds after it's change ...
