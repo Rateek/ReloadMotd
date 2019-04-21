@@ -1,6 +1,6 @@
-<h3>**The new Motd plugin for PocketMine server.**</h3>
+<h1>The new Motd plugin for PocketMine server.</h1>
 
-<h4>**Information:**</h4>
+<h2>Information:</h2>
 What is the purpose of ReloadMotd ? 
 <br><br>
 ReloadMotd is used to make a customizable word of A to Z.
