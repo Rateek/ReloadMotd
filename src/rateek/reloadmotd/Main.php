@@ -10,16 +10,16 @@ use rateek\reloadmotd\tasks\ReloadMotd;
 
 class Main extends PluginBase {
 
-	public function onEnable(){
+    public function onEnable(){
         if(!file_exists($this->getDataFolder() . "config.yml")){
             $this->saveResource("config.yml");
         }
 
         $this->registerEvents();
         $this->registerTasks();
-	}
+    }
 
-	public function registerEvents(){
+    public function registerEvents(){
         $this->getServer()->getPluginManager()->registerEvents(new PlayerJoin($this), $this);
     }
 
