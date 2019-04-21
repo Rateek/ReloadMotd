@@ -3,17 +3,15 @@
 namespace rateek\reloadmotd\events;
 
 use pocketmine\event\Listener;
+
 use pocketmine\event\player\PlayerJoinEvent;
+
 use rateek\reloadmotd\Main;
 
-class ReloadMotdListener implements Listener{
+class PlayerJoin implements Listener {
 
 	private $main;
 
-	/**
-	 * ReloadMotdListener constructor.
-	 * @param Main $main
-	 */
 	public function __construct(Main $main){
 		$this->main = $main;
 	}
@@ -21,8 +19,8 @@ class ReloadMotdListener implements Listener{
 	public function onJoin(PlayerJoinEvent $event){
 		$player = $event->getPlayer();
 
-		if($this->main->getConfig()->get("reloadmotd.message.join") == true){
-			$player->sendMessage("§bHello §3" . $player->getName() . "§b, The server uses ReloadMotd by @Rateek_");
+		if($this->main->getConfig()->get("message-join") == true){
+			$player->sendMessage("§bHello §3" . $player->getName() . "§b, the server uses ReloadMotd plugin by @_RATEEK");
 		}
 	}
 }

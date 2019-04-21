@@ -3,33 +3,31 @@
 namespace rateek\reloadmotd;
 
 use pocketmine\plugin\PluginBase;
-use rateek\reloadmotd\events\ReloadMotdListener;
-use rateek\reloadmotd\tasks\ReloadMotdTask;
 
+use rateek\reloadmotd\events\PlayerJoin;
 
-class Main extends PluginBase{
+use rateek\reloadmotd\tasks\ReloadMotd;
 
-	/**
-	 * Enable ReloadMotd
-	 */
+class Main extends PluginBase {
+
+    public static $main;
+
 	public function onEnable(){
-		# Logger
-		$this->getLogger()->notice("§eReloadMotd enable.");
+        self::$main = $this;
 
-		# Events
-		$this->getServer()->getPluginManager()->registerEvents(new ReloadMotdListener($this), $this);
+        if(!file_exists($this->getDataFolder() . "config.yml")){
+            $this->saveResource("config.yml");
+        }
 
-		# Tasks
-		$this->getScheduler()->scheduleRepeatingTask(new ReloadMotdTask($this), 60);
-
-		# Config
-		if(!is_dir($this->getDataFolder())){
-			mkdir($this->getDataFolder());
-		}
-
-		if(!file_exists($this->getDataFolder() . "config.yml")){
-			$this->saveDefaultConfig();
-		}
+        $this->registerEvents();
+        $this->registerTasks();
 	}
 
+	public function registerEvents(){
+        $this->getServer()->getPluginManager()->registerEvents(new PlayerJoin($this), $this);
+    }
+
+    public function registerTasks(){
+        $this->getScheduler()->scheduleRepeatingTask(new ReloadMotd($this), $this->getConfig()->get("seconds") * 60);
+    }
 }
