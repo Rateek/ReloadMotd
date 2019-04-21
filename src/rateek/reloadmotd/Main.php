@@ -10,11 +10,7 @@ use rateek\reloadmotd\tasks\ReloadMotd;
 
 class Main extends PluginBase {
 
-    public static $main;
-
 	public function onEnable(){
-        self::$main = $this;
-
         if(!file_exists($this->getDataFolder() . "config.yml")){
             $this->saveResource("config.yml");
         }
